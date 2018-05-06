@@ -24,6 +24,7 @@
 namespace JuliusHaertl\PHPDocToRst;
 
 use JuliusHaertl\PHPDocToRst\Extension\AddFullElementNameExtension;
+use JuliusHaertl\PHPDocToRst\Extension\BitbucketLocationExtension;
 use JuliusHaertl\PHPDocToRst\Extension\GithubLocationExtension;
 use JuliusHaertl\PHPDocToRst\Extension\NoPrivateExtension;
 use JuliusHaertl\PHPDocToRst\Extension\PublicOnlyExtension;
@@ -55,6 +56,7 @@ class GenerateDocumentationCommand extends Command {
             ->addOption('show-private', null, InputOption::VALUE_NONE)
             ->addOption('element-toc', 't', InputOption::VALUE_NONE)
             ->addOption('repo-github', null, InputOption::VALUE_REQUIRED, 'Github URL of the projects git repository (requires --repo-base as well)', false)
+            ->addOption('repo-bitbucket', null, InputOption::VALUE_REQUIRED, 'Github URL of the projects git repository (requires --repo-base as well)', false)
             ->addOption('repo-base', null, InputOption::VALUE_REQUIRED, 'Base path of the project git repository', false);
 
     }
@@ -85,6 +87,13 @@ class GenerateDocumentationCommand extends Command {
             $apiDocBuilder->addExtension(GithubLocationExtension::class, [
                 $input->getOption('repo-base'),
                 $input->getOption('repo-github')
+            ]);
+        }
+
+        if($input->getOption('repo-bitbucket') && $input->getOption('repo-base')) {
+            $apiDocBuilder->addExtension(BitbucketLocationExtension::class, [
+                $input->getOption('repo-base'),
+                $input->getOption('repo-bitbucket')
             ]);
         }
         $apiDocBuilder->build();
