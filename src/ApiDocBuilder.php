@@ -63,7 +63,7 @@ final class ApiDocBuilder {
     private $functions = [];
 
     /** @var Extension[] */
-    private $extensions;
+    private $extensions = [];
 
     /** @var string[] */
     private $extensionNames = [];
