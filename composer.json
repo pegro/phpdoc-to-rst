@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "phpdocumentor/reflection": "dev-php-7.0",
+        "phpdocumentor/reflection": "dev-php-7.0@dev",
         "phpdocumentor/reflection-common": "1.0.1@stable",
         "phpdocumentor/reflection-docblock": "4.3.0@stable",
         "symfony/console": "^3.3@stable"
