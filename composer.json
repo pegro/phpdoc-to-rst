@@ -3,13 +3,13 @@
     "description": "Generate Sphinx/ReStructured documentation from PHPDoc",
     "type": "library",
     "repositories": [
-        {
+	{
             "type": "vcs",
-            "url": "https://github.com/juliushaertl/Reflection.git"
+            "url": "https://github.com/pegro/Reflection.git"
         }
     ],
     "require": {
-        "phpdocumentor/reflection": "dev-develop#cc98c55@dev",
+        "phpdocumentor/reflection": "dev-php-7.0",
         "phpdocumentor/reflection-common": "1.0.1@stable",
         "phpdocumentor/reflection-docblock": "4.3.0@stable",
         "symfony/console": "^3.3@stable"
