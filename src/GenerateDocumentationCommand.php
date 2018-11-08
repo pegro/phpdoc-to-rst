@@ -57,7 +57,8 @@ class GenerateDocumentationCommand extends Command {
             ->addOption('element-toc', 't', InputOption::VALUE_NONE)
             ->addOption('repo-github', null, InputOption::VALUE_REQUIRED, 'Github URL of the projects git repository (requires --repo-base as well)', false)
             ->addOption('repo-bitbucket', null, InputOption::VALUE_REQUIRED, 'Github URL of the projects git repository (requires --repo-base as well)', false)
-            ->addOption('repo-base', null, InputOption::VALUE_REQUIRED, 'Base path of the project git repository', false);
+            ->addOption('repo-base', null, InputOption::VALUE_REQUIRED, 'Base path of the project git repository', false)
+            ->addOption('repo-branch', null, InputOption::VALUE_OPTIONAL, 'Current project branch', false);
 
     }
 
@@ -86,14 +87,16 @@ class GenerateDocumentationCommand extends Command {
         if($input->getOption('repo-github') && $input->getOption('repo-base')) {
             $apiDocBuilder->addExtension(GithubLocationExtension::class, [
                 $input->getOption('repo-base'),
-                $input->getOption('repo-github')
+                $input->getOption('repo-github'),
+                $input->getOption('repo-branch')
             ]);
         }
 
         if($input->getOption('repo-bitbucket') && $input->getOption('repo-base')) {
             $apiDocBuilder->addExtension(BitbucketLocationExtension::class, [
                 $input->getOption('repo-base'),
-                $input->getOption('repo-bitbucket')
+                $input->getOption('repo-bitbucket'),
+                $input->getOption('repo-branch')
             ]);
         }
         $apiDocBuilder->build();
